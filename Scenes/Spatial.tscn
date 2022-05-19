@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes/player.tscn" type="PackedScene" id=1]
+
+[sub_resource type="CubeMesh" id=57]
+
+[sub_resource type="ShaderMaterial" id=58]
+
+[sub_resource type="BoxShape" id=55]
+
+[node name="Spatial" type="Spatial"]
+transform = Transform( 1.63332, -0.00407611, -0.0138538, 0.00209313, 0.779861, 0.0173198, 0.00643529, -0.0169781, 0.763697, -0.703567, 1.39224, 1.96783 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 26.1599, -0.0754663, 0.263419, -0.070195, 0.983118, -0.868762, 0.261869, -1.49027, 57.4698, 0.0321544, -1.97215, -1.82047 )
+mesh = SubResource( 57 )
+material/0 = SubResource( 58 )
+
+[node name="StaticBody" type="StaticBody" parent="MeshInstance"]
+
+[node name="CollisionShape" type="CollisionShape" parent="MeshInstance/StaticBody"]
+transform = Transform( 1, -3.63798e-10, -1.86265e-09, -1.39698e-09, 1, -5.96046e-08, 0, -3.72529e-09, 1, 0, 0, 0 )
+shape = SubResource( 55 )
+
+[node name="playerController" parent="." instance=ExtResource( 1 )]
