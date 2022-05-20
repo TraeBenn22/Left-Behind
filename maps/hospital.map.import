@@ -1,0 +1,13 @@
+[remap]
+
+importer="qodot.map"
+type="Resource"
+path="res://.import/hospital.map-4b209d9e24955d42365a4e5929d724ca.tres"
+
+[deps]
+
+source_file="res://maps/hospital.map"
+dest_files=[ "res://.import/hospital.map-4b209d9e24955d42365a4e5929d724ca.tres" ]
+
+[params]
+

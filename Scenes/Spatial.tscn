@@ -1,6 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://addons/qodot/game_definitions/fgd/qodot_fgd.tres" type="Resource" id=2]
+[ext_resource path="res://addons/qodot/src/nodes/qodot_map.gd" type="Script" id=3]
 
 [sub_resource type="CubeMesh" id=57]
 
@@ -8,11 +10,14 @@
 
 [sub_resource type="BoxShape" id=55]
 
+[sub_resource type="SpatialMaterial" id=59]
+
 [node name="Spatial" type="Spatial"]
 transform = Transform( 1.63332, -0.00407611, -0.0138538, 0.00209313, 0.779861, 0.0173198, 0.00643529, -0.0169781, 0.763697, -0.703567, 1.39224, 1.96783 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 transform = Transform( 26.1599, -0.0754663, 0.263419, -0.070195, 0.983118, -0.868762, 0.261869, -1.49027, 57.4698, 0.0321544, -1.97215, -1.82047 )
+visible = false
 mesh = SubResource( 57 )
 material/0 = SubResource( 58 )
 
@@ -23,3 +28,22 @@ transform = Transform( 1, -3.63798e-10, -1.86265e-09, -1.39698e-09, 1, -5.96046e
 shape = SubResource( 55 )
 
 [node name="playerController" parent="." instance=ExtResource( 1 )]
+
+[node name="QodotMap" type="Spatial" parent="."]
+script = ExtResource( 3 )
+map_file = "D:/Projects/Left-Behind/maps/hospital.map"
+inverse_scale_factor = 16.0
+entity_fgd = ExtResource( 2 )
+base_texture_dir = "res://textures"
+texture_file_extensions = PoolStringArray( "png" )
+worldspawn_layers = [  ]
+brush_clip_texture = "special/clip"
+face_skip_texture = "special/skip"
+texture_wads = [  ]
+material_file_extension = "tres"
+default_material = SubResource( 59 )
+uv_unwrap_texel_size = 1.0
+print_profiling_data = false
+use_trenchbroom_group_hierarchy = false
+tree_attach_batch_size = 16
+set_owner_batch_size = 16
