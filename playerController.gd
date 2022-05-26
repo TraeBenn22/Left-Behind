@@ -5,7 +5,7 @@ onready var camera = $Pivot/Camera
 var gravity = -30
 var max_speed = 8
 var mouse_sensitivity = 0.002  # radians/pixel
-
+var speed_bonus = 10
 var velocity = Vector3()
 var input_dir = Vector3()
 
@@ -29,6 +29,7 @@ func _physics_process(delta):
 func handle_input():
 	if Input.is_action_pressed("ui_cancel"):
 		get_tree().quit()
+	input_dir = Vector3()
 	# desired move in camera direction
 	if Input.is_action_pressed("move_forward"):
 		input_dir += -global_transform.basis.z
@@ -43,9 +44,17 @@ func handle_input():
 
 func handle_movement(delta):
 	velocity.y += gravity * delta
-	var desired_velocity = input_dir * max_speed
+	if Input.is_action_pressed("shift_run"):
+		var desired_velocity = input_dir * 18
+		velocity.x = desired_velocity.x
+		velocity.z = desired_velocity.z
+		velocity = move_and_slide(velocity, Vector3.UP, true)
+		
+	else: 
+		var desired_velocity = input_dir * 8
+		velocity.x = desired_velocity.x
+		velocity.z = desired_velocity.z
+		velocity = move_and_slide(velocity, Vector3.UP, true)
 
-	velocity.x = desired_velocity.x
-	velocity.z = desired_velocity.z
-	velocity = move_and_slide(velocity, Vector3.UP, true)
+	
 	
